@@ -229,7 +229,7 @@ public class BuildMapperXml {
             }
 
             if (autoIncrementField != null) {
-                bw.write("\t\t<selectKey keyProperty=\"bean." + autoIncrementField.getFieldName() + "\" resultType=\""
+                bw.write("\t\t<selectKey keyProperty=\"bean." + autoIncrementField.getPropertyName() + "\" resultType=\""
                         + autoIncrementField.getJavaType() + "\" order=\"AFTER\">");
                 bw.newLine();
                 bw.write("\t\t\tSELECT LAST_INSERT_ID()");
@@ -244,7 +244,7 @@ public class BuildMapperXml {
             bw.write("\t\t<trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">");
             bw.newLine();
             for (FieldInfo fieldInfo: tableInfo.getFieldInfoList()) {
-                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                 bw.newLine();
                 bw.write("\t\t\t\t" + fieldInfo.getFieldName() + ",");
                 bw.newLine();
@@ -257,9 +257,9 @@ public class BuildMapperXml {
             bw.write("\t\t<trim prefix=\"values (\" suffix=\")\" suffixOverrides=\",\">");
             bw.newLine();
             for (FieldInfo fieldInfo: tableInfo.getFieldInfoList()) {
-                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                 bw.newLine();
-                bw.write("\t\t\t\t#{bean." + fieldInfo.getFieldName() + "},");
+                bw.write("\t\t\t\t#{bean." + fieldInfo.getPropertyName() + "},");
                 bw.newLine();
                 bw.write("\t\t\t</if>");
                 bw.newLine();
@@ -283,7 +283,7 @@ public class BuildMapperXml {
             bw.write("\t\t<trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">");
             bw.newLine();
             for (FieldInfo fieldInfo: tableInfo.getFieldInfoList()) {
-                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                 bw.newLine();
                 bw.write("\t\t\t\t" + fieldInfo.getFieldName() + ",");
                 bw.newLine();
@@ -296,9 +296,9 @@ public class BuildMapperXml {
             bw.write("\t\t<trim prefix=\"values (\" suffix=\")\" suffixOverrides=\",\">");
             bw.newLine();
             for (FieldInfo fieldInfo: tableInfo.getFieldInfoList()) {
-                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                 bw.newLine();
-                bw.write("\t\t\t\t#{bean." + fieldInfo.getFieldName() + "},");
+                bw.write("\t\t\t\t#{bean." + fieldInfo.getPropertyName() + "},");
                 bw.newLine();
                 bw.write("\t\t\t</if>");
                 bw.newLine();
@@ -323,7 +323,7 @@ public class BuildMapperXml {
                 if (keyIndexSet.contains(fieldInfo.getFieldName())) {
                     continue;
                 }
-                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + " != null\">");
+                bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + " != null\">");
                 bw.newLine();
                 bw.write("\t\t\t\t" + fieldInfo.getFieldName() + " = VALUES(" + fieldInfo.getFieldName() + "),");
                 bw.newLine();
@@ -439,7 +439,7 @@ public class BuildMapperXml {
                 bw.write("\t\t<set>");
                 bw.newLine();
                 for (FieldInfo fieldInfo: tableInfo.getFieldInfoList()) {
-                    bw.write("\t\t\t<if test=\"bean." + fieldInfo.getFieldName() + "!=null\">");
+                    bw.write("\t\t\t<if test=\"bean." + fieldInfo.getPropertyName() + "!=null\">");
                     bw.newLine();
                     bw.write("\t\t\t\t"+fieldInfo.getFieldName() + " = #{bean." + fieldInfo.getPropertyName() + "},");
                     bw.newLine();
